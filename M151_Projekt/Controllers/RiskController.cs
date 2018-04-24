@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using M151_Projekt.Core;
@@ -52,12 +53,28 @@ namespace M151_Projekt.Controllers
             unitOfWork.Complete();
             return View(risk);
         }
-
-        [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            unitOfWork.Risks.Remove(unitOfWork.Risks.Get(id));
-            return View("Index");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Risk risk = unitOfWork.Risks.Get(id ?? default(int));
+            if (risk == null)
+            {
+                return HttpNotFound();
+            }
+            return View(risk);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Risk risk = unitOfWork.Risks.Get(id);
+            unitOfWork.Risks.Remove(risk);
+            unitOfWork.Complete();
+            return RedirectToAction("Index");
         }
     }
 }
