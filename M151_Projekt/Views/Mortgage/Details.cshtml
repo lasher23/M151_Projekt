@@ -1,0 +1,42 @@
+﻿@model M151_Projekt.Models.Mortgage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Mortgage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.morgageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.morgageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Risk.riskName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Risk.riskName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

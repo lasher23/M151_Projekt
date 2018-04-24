@@ -1,0 +1,40 @@
+﻿@model M151_Projekt.Models.MortgageCustomerAssignment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MortgageCustomerAssignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.prename)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.prename)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mortgage.morgageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mortgage.morgageName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

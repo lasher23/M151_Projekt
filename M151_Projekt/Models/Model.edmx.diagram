@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1e68cd0baecd44da8c884764acf9d395" Name="Diagram1">
+        <EntityTypeShape EntityType="MortgageModel.Customer" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MortgageModel.Mortgage" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MortgageModel.MortgageCustomerAssignment" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MortgageModel.Risk" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="MortgageModel.FK__MortgageC__fk_cu__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="MortgageModel.FK__Mortgage__fk_ris__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="MortgageModel.FK__MortgageC__fk_mo__2B3F6F97" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

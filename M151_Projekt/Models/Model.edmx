@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MortgageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prename" Type="varchar" MaxLength="255" />
+          <Property Name="familyName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Mortgage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="morgageName" Type="varchar" MaxLength="255" />
+          <Property Name="rate" Type="float" />
+          <Property Name="fk_risk" Type="int" />
+        </EntityType>
+        <EntityType Name="MortgageCustomerAssignment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_customer" Type="int" />
+          <Property Name="fk_mortgage" Type="int" />
+        </EntityType>
+        <EntityType Name="Risk">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="daysPlus" Type="int" />
+          <Property Name="riskName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Mortgage__fk_ris__276EDEB3">
+          <End Role="Risk" Type="Self.Risk" Multiplicity="0..1" />
+          <End Role="Mortgage" Type="Self.Mortgage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mortgage">
+              <PropertyRef Name="fk_risk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MortgageC__fk_cu__2A4B4B5E">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="MortgageCustomerAssignment" Type="Self.MortgageCustomerAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MortgageCustomerAssignment">
+              <PropertyRef Name="fk_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MortgageC__fk_mo__2B3F6F97">
+          <End Role="Mortgage" Type="Self.Mortgage" Multiplicity="0..1" />
+          <End Role="MortgageCustomerAssignment" Type="Self.MortgageCustomerAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mortgage">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MortgageCustomerAssignment">
+              <PropertyRef Name="fk_mortgage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MortgageModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mortgage" EntityType="Self.Mortgage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MortgageCustomerAssignment" EntityType="Self.MortgageCustomerAssignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Risk" EntityType="Self.Risk" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Mortgage__fk_ris__276EDEB3" Association="Self.FK__Mortgage__fk_ris__276EDEB3">
+            <End Role="Risk" EntitySet="Risk" />
+            <End Role="Mortgage" EntitySet="Mortgage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MortgageC__fk_cu__2A4B4B5E" Association="Self.FK__MortgageC__fk_cu__2A4B4B5E">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="MortgageCustomerAssignment" EntitySet="MortgageCustomerAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MortgageC__fk_mo__2B3F6F97" Association="Self.FK__MortgageC__fk_mo__2B3F6F97">
+            <End Role="Mortgage" EntitySet="Mortgage" />
+            <End Role="MortgageCustomerAssignment" EntitySet="MortgageCustomerAssignment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MortgageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prename" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="familyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MortgageCustomerAssignment" Relationship="Self.FK__MortgageC__fk_cu__2A4B4B5E" FromRole="Customer" ToRole="MortgageCustomerAssignment" />
+        </EntityType>
+        <EntityType Name="Mortgage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="morgageName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="rate" Type="Double" />
+          <Property Name="fk_risk" Type="Int32" />
+          <NavigationProperty Name="Risk" Relationship="Self.FK__Mortgage__fk_ris__276EDEB3" FromRole="Mortgage" ToRole="Risk" />
+          <NavigationProperty Name="MortgageCustomerAssignment" Relationship="Self.FK__MortgageC__fk_mo__2B3F6F97" FromRole="Mortgage" ToRole="MortgageCustomerAssignment" />
+        </EntityType>
+        <EntityType Name="MortgageCustomerAssignment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_customer" Type="Int32" />
+          <Property Name="fk_mortgage" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__MortgageC__fk_cu__2A4B4B5E" FromRole="MortgageCustomerAssignment" ToRole="Customer" />
+          <NavigationProperty Name="Mortgage" Relationship="Self.FK__MortgageC__fk_mo__2B3F6F97" FromRole="MortgageCustomerAssignment" ToRole="Mortgage" />
+        </EntityType>
+        <EntityType Name="Risk">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="daysPlus" Type="Int32" />
+          <Property Name="riskName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mortgage" Relationship="Self.FK__Mortgage__fk_ris__276EDEB3" FromRole="Risk" ToRole="Mortgage" />
+        </EntityType>
+        <Association Name="FK__MortgageC__fk_cu__2A4B4B5E">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="MortgageCustomerAssignment" Type="Self.MortgageCustomerAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MortgageCustomerAssignment">
+              <PropertyRef Name="fk_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mortgage__fk_ris__276EDEB3">
+          <End Role="Risk" Type="Self.Risk" Multiplicity="0..1" />
+          <End Role="Mortgage" Type="Self.Mortgage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mortgage">
+              <PropertyRef Name="fk_risk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MortgageC__fk_mo__2B3F6F97">
+          <End Role="Mortgage" Type="Self.Mortgage" Multiplicity="0..1" />
+          <End Role="MortgageCustomerAssignment" Type="Self.MortgageCustomerAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mortgage">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MortgageCustomerAssignment">
+              <PropertyRef Name="fk_mortgage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MortgageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Mortgage" EntityType="Self.Mortgage" />
+          <EntitySet Name="MortgageCustomerAssignment" EntityType="Self.MortgageCustomerAssignment" />
+          <EntitySet Name="Risk" EntityType="Self.Risk" />
+          <AssociationSet Name="FK__MortgageC__fk_cu__2A4B4B5E" Association="Self.FK__MortgageC__fk_cu__2A4B4B5E">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="MortgageCustomerAssignment" EntitySet="MortgageCustomerAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mortgage__fk_ris__276EDEB3" Association="Self.FK__Mortgage__fk_ris__276EDEB3">
+            <End Role="Risk" EntitySet="Risk" />
+            <End Role="Mortgage" EntitySet="Mortgage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MortgageC__fk_mo__2B3F6F97" Association="Self.FK__MortgageC__fk_mo__2B3F6F97">
+            <End Role="Mortgage" EntitySet="Mortgage" />
+            <End Role="MortgageCustomerAssignment" EntitySet="MortgageCustomerAssignment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MortgageModelStoreContainer" CdmEntityContainer="MortgageEntities">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="MortgageModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="prename" ColumnName="prename" />
+                <ScalarProperty Name="familyName" ColumnName="familyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mortgage">
+            <EntityTypeMapping TypeName="MortgageModel.Mortgage">
+              <MappingFragment StoreEntitySet="Mortgage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="morgageName" ColumnName="morgageName" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="fk_risk" ColumnName="fk_risk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MortgageCustomerAssignment">
+            <EntityTypeMapping TypeName="MortgageModel.MortgageCustomerAssignment">
+              <MappingFragment StoreEntitySet="MortgageCustomerAssignment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fk_customer" ColumnName="fk_customer" />
+                <ScalarProperty Name="fk_mortgage" ColumnName="fk_mortgage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Risk">
+            <EntityTypeMapping TypeName="MortgageModel.Risk">
+              <MappingFragment StoreEntitySet="Risk">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="daysPlus" ColumnName="daysPlus" />
+                <ScalarProperty Name="riskName" ColumnName="riskName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

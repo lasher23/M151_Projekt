@@ -20,11 +20,12 @@ namespace M151_Projekt
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-material-design.min.js",
+                      "~/Scripts/popper.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-material-design.min.css",
                       "~/Content/site.css"));
         }
     }
