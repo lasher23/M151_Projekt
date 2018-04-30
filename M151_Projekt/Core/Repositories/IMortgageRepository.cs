@@ -8,5 +8,6 @@ namespace M151_Projekt.Core.Repositories
 {
     public interface IMortgageRepository : IRepository<Mortgage>
     {
+        List<Mortgage> GetByCustomer(int id);
     }
 }

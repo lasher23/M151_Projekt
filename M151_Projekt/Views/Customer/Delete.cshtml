@@ -29,7 +29,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -37,4 +38,39 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Mortgagename")
+            </th>
+            <th>
+                @Html.DisplayName("Rate")
+            </th>
+            <th>
+                @Html.DisplayName("Riskname")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in ViewBag.Mortgages)
+        {
+            <tr>
+                <td>
+                    @item.morgageName
+                <td />
+                <td>
+                    @item.rate
+                </td>
+                <td>
+                    @item.Risk.riskName
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Mortgage", new { id = item.id },null) |
+                    @Html.ActionLink("Details", "Details", "Mortgage", new { id = item.id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Mortgage", new { id = item.id }, null)
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>

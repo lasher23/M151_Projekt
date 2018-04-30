@@ -37,18 +37,21 @@ namespace M151_Projekt.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
+            ViewBag.Mortgages = unitOfWork.Mortgages.GetByCustomer(id);
             return View(unitOfWork.Customers.Get(id));
         }
 
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            ViewBag.Mortgages = unitOfWork.Mortgages.GetByCustomer(id);
             return View(unitOfWork.Customers.Get(id));
         }
 
         [HttpPost]
         public ActionResult Edit(Customer customer)
-        { 
+        {
+            ViewBag.Mortgages = unitOfWork.Mortgages.GetByCustomer(customer.id);
             unitOfWork.Customers.Update(customer);
             unitOfWork.Complete();
             return View(customer);
@@ -66,6 +69,7 @@ namespace M151_Projekt.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Mortgages = unitOfWork.Mortgages.GetByCustomer(customer.id);
             return View(customer);
         }
 
@@ -78,5 +82,8 @@ namespace M151_Projekt.Controllers
             unitOfWork.Complete();
             return RedirectToAction("Index");
         }
+
+       
+        
     }
 }
