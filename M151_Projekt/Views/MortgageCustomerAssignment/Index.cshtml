@@ -12,28 +12,35 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.prename)
+            @Html.DisplayName("Customer")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Mortgage.morgageName)
+            @Html.DisplayName("Mortgage")
+        </th>
+        <th>
+            @Html.DisplayName("Paid State")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.prename)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mortgage.morgageName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.prename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mortgage.morgageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paidState)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -108,8 +108,19 @@ namespace M151_Projekt.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Mortgage mortgage = unitOfWork.Mortgages.Get(id);
-            unitOfWork.Mortgages.Remove(mortgage);
-            unitOfWork.Complete();
+            
+            
+            try
+            {
+                unitOfWork.Mortgages.Remove(mortgage);
+                unitOfWork.Complete();
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = "Some Customer still reference on this Mortgage";
+                return View("Error");
+            }
             return RedirectToAction("Index");
         }
     }

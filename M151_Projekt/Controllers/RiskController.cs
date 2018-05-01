@@ -72,8 +72,17 @@ namespace M151_Projekt.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Risk risk = unitOfWork.Risks.Get(id);
-            unitOfWork.Risks.Remove(risk);
-            unitOfWork.Complete();
+            try
+            {
+                unitOfWork.Risks.Remove(risk);
+                unitOfWork.Complete();
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = "Some Mortgages still reference on this Risk";
+                return View("Error");
+            }
             return RedirectToAction("Index");
         }
     }

@@ -15,7 +15,7 @@
         @Html.ActionLink("Customers", "Index","Customer", new {area=""},new {@class = "py-2 d-none d-md-inline-block" })
         @Html.ActionLink("Mortgages", "Index", "Mortgage", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
         @Html.ActionLink("Risk", "Index", "Risk", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
-        @Html.ActionLink("Selled", "Index", "MortgageCustomerAssignment", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
+        @Html.ActionLink("Sold", "Index", "MortgageCustomerAssignment", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
 
     </div>
 </nav>
@@ -23,7 +23,7 @@
     @RenderBody()
     <hr/>
     <footer>
-        <p>&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
+        <p>&copy; @DateTime.Now.Year - Mortgages Database</p>
     </footer>
 </div>
 

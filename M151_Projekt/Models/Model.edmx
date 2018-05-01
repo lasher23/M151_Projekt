@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MortgageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MortgageModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="id" />
@@ -29,6 +29,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fk_customer" Type="int" />
           <Property Name="fk_mortgage" Type="int" />
+          <Property Name="paidState" Type="bit" />
         </EntityType>
         <EntityType Name="Risk">
           <Key>
@@ -92,8 +93,7 @@
             <End Role="MortgageCustomerAssignment" EntitySet="MortgageCustomerAssignment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MortgageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -126,6 +126,7 @@
           <Property Name="fk_mortgage" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__MortgageC__fk_cu__2A4B4B5E" FromRole="MortgageCustomerAssignment" ToRole="Customer" />
           <NavigationProperty Name="Mortgage" Relationship="Self.FK__MortgageC__fk_mo__2B3F6F97" FromRole="MortgageCustomerAssignment" ToRole="Mortgage" />
+          <Property Name="paidState" Type="Boolean" />
         </EntityType>
         <EntityType Name="Risk">
           <Key>
@@ -218,6 +219,7 @@
           <EntitySetMapping Name="MortgageCustomerAssignment">
             <EntityTypeMapping TypeName="MortgageModel.MortgageCustomerAssignment">
               <MappingFragment StoreEntitySet="MortgageCustomerAssignment">
+                <ScalarProperty Name="paidState" ColumnName="paidState" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="fk_customer" ColumnName="fk_customer" />
                 <ScalarProperty Name="fk_mortgage" ColumnName="fk_mortgage" />

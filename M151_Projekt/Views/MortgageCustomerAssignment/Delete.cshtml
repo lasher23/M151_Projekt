@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.prename)
+            @Html.DisplayName("Vorname")
         </dt>
 
         <dd>
@@ -20,11 +20,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Mortgage.morgageName)
+            @Html.DisplayName("Mortgage")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Mortgage.morgageName)
+        </dd>
+        <dt>
+            @Html.DisplayName("Paid State")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.paidState)
         </dd>
 
     </dl>

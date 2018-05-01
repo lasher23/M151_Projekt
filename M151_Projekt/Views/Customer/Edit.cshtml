@@ -1,4 +1,6 @@
-﻿@model M151_Projekt.Models.Customer
+﻿@using System.Collections.ObjectModel
+@using M151_Projekt.Models
+@model M151_Projekt.Models.Customer
 
 @{
     ViewBag.Title = "Edit";
@@ -18,7 +20,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.prename, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.prename, "Prename", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.prename, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.prename, "", new { @class = "text-danger" })
@@ -26,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.familyName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.familyName, "Family Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.familyName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.familyName, "", new { @class = "text-danger" })
@@ -64,7 +66,7 @@
         <tr>
             <td>
                 @item.morgageName
-            <td />
+            </td>
             <td>
                 @item.rate
             </td>

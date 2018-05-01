@@ -17,6 +17,7 @@ namespace M151_Projekt.Models
         public int id { get; set; }
         public Nullable<int> fk_customer { get; set; }
         public Nullable<int> fk_mortgage { get; set; }
+        public Nullable<bool> paidState { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Mortgage Mortgage { get; set; }

@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.prename)
+            @Html.DisplayName("Prename")
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.familyName)
+            @Html.DisplayName("Family Name")
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         <tr>
             <td>
                 @item.morgageName
-            <td />
+            </td>
             <td>
                 @item.rate
             </td>
@@ -59,7 +59,7 @@
                 @item.Risk.riskName
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Mortgage", new { id = item.id }, null) |
+                @Html.ActionLink("Edit", "Edit", "Mortgage", new { id = item.id },null) |
                 @Html.ActionLink("Details", "Details", "Mortgage", new { id = item.id }, null) |
                 @Html.ActionLink("Delete", "Delete", "Mortgage", new { id = item.id }, null)
             </td>

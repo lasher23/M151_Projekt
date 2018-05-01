@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.fk_customer, "fk_customer", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fk_customer, "Customer", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("fk_customer", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.fk_customer, "", new { @class = "text-danger" })
@@ -24,16 +24,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fk_mortgage, "fk_mortgage", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fk_mortgage, "Mortgage", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("fk_mortgage", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.fk_mortgage, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.paidState, "Paid State", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("paidState", new[] { new SelectListItem { Text = "True", Value = "1" }, new SelectListItem { Text = "False", Value = "0" } }, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.paidState, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default btn-outline-primary" />
             </div>
         </div>
     </div>

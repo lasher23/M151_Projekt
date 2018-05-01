@@ -78,9 +78,20 @@ namespace M151_Projekt.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = unitOfWork.Customers.Get(id);
-            unitOfWork.Customers.Remove(customer);
-            unitOfWork.Complete();
-            return RedirectToAction("Index");
+            try
+            {
+                unitOfWork.Customers.Remove(customer);
+                unitOfWork.Complete();
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = "Some Mortgages still reference on this Customer";
+                return View("Error");
+            }
+
+        
+        return RedirectToAction("Index");
         }
 
        

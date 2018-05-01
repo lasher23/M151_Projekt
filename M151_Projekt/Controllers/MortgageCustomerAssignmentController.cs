@@ -43,7 +43,7 @@ namespace M151_Projekt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,fk_customer,fk_mortgage")] MortgageCustomerAssignment mortgageCustomerAssignment)
+        public ActionResult Create([Bind(Include = "id,fk_customer,fk_mortgage,paidState")] MortgageCustomerAssignment mortgageCustomerAssignment)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace M151_Projekt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,fk_customer,fk_mortgage")] MortgageCustomerAssignment mortgageCustomerAssignment)
+        public ActionResult Edit([Bind(Include = "id,fk_customer,fk_mortgage,paidState")] MortgageCustomerAssignment mortgageCustomerAssignment)
         {
             if (ModelState.IsValid)
             {
